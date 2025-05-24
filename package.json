@@ -9,15 +9,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/norderan/web-one-template.git"
+    "url": "git+https://github.com/norderan/odin-weather-app.git"
   },
+
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/norderan/web-one-template/issues"
+    "url": "https://github.com/norderan/odin-weather-app/issues"
   },
-  "homepage": "https://github.com/norderan/web-one-template#readme",
+  "homepage": "https://github.com/norderan/odin-weather-app#readme",
   "description": "",
   "devDependencies": {
     "@eslint/css": "^0.8.1",
