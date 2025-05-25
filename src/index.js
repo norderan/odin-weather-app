@@ -2,9 +2,9 @@ import "./styles.css";
 import { fetchWeatherData } from "./weatherService";
 
 
-async function displayWeather(city) {
+async function displayWeather(city, unit) {
     try {
-        const weatherData = await fetchWeatherData(city);
+        const weatherData = await fetchWeatherData(city, unit);
 
         // Remove previous weather info if exists
         const oldSidebar = document.getElementById("weather-info-sidebar");
@@ -49,8 +49,8 @@ async function displayWeather(city) {
         const dateTime = `${formatDate(day0.date)} | ${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`;
         sidebar.innerHTML = `
             <h3>${dateTime}</h3>
-            <h1>${city}</h1>
-            <h1 id="temp">${Math.round(day0.temp)}°</h1>
+            <h1>${weatherData.cityName || city}</h1>
+            <h1 id="temp">${Math.round(day0.temp)}°${unit}</h1>
             <p>${day0.description || ""}</p>
             <p><span class="material-icons" style="vertical-align:middle;">water_drop</span> <strong>Humidity:</strong> ${Math.round(day0.humidity)}%</p>
             <p><span class="material-icons" style="vertical-align:middle;">air</span> <strong>Wind:</strong> ${Math.round(day0.windSpeed)} km/h</p>
@@ -86,4 +86,32 @@ async function displayWeather(city) {
     }
 }
 
-displayWeather("beersheva"); // Replace with any city you want to test
+displayWeather("beersheva", "c"); // Replace with any city you want to test
+let unit = "c";
+
+const unitToggleButton = document.getElementById("unit-toggle-button");
+unitToggleButton.addEventListener("click", () => {
+    unit = unit === "c" ? "f" : "c";
+    const city = searchInput.value.trim() || "beersheva";
+    displayWeather(city, unit);
+});
+const searchInput = document.getElementById("search-city-input");
+const searchButton = document.getElementById("search-city-button");
+
+searchButton.addEventListener("click", () => {
+    const city = searchInput.value.trim();
+    if (city) {
+        displayWeather(city, unit);
+    }
+});
+
+searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        const city = searchInput.value.trim();
+        if (city) {
+            displayWeather(city, unit);
+        }
+    }
+});
+
+

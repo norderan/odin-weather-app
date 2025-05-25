@@ -83,3 +83,81 @@ body {
     font-weight: bold;
     margin-top: 2px;
 }
+
+
+#controls-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 1000;
+}
+
+#search-city-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    border-radius: 30px;
+    padding: 12px 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    gap: 10px;
+}
+
+#search-city-input {
+    font-family: var(--paragraph-font);
+    font-size: 1rem;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    width: 180px;
+    transition: box-shadow 0.2s;
+}
+
+#search-city-input:focus {
+    box-shadow: 0 0 0 2px var(--complimentary-color);
+}
+
+#search-city-button {
+    background: var(--complimentary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+#search-city-button:hover {
+    background: var(--accent-color);
+}
+#unit-toggle-button {
+    background: var(--primary-color);
+    color: var(--accent-color);
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-family: var(--paragraph-font);
+    cursor: pointer;
+    border-radius: 20px;
+    height: 48px; /* Match search bar height */
+    transition: background 0.2s;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+#unit-toggle-button:hover {
+    background: var(--primary-color);
+    filter: brightness(0.95);
+}

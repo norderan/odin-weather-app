@@ -1,6 +1,7 @@
-async function fetchWeatherData(city) {
+async function fetchWeatherData(city, unit = 'c') {
     try {
-        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=us&include=days%2Calerts%2Ccurrent&key=WTV5DCP8S6Y65YD7XGFAZ9MAX&contentType=json`);
+        const unitGroup = unit === 'c' ? 'metric' : 'us';
+        const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=${unitGroup}&include=days%2Calerts%2Ccurrent&key=WTV5DCP8S6Y65YD7XGFAZ9MAX&contentType=json`);
         const weatherData = await response.json();
         return {
             day0: {
