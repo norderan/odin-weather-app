@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ancizar+Sans:ital,wght@0,100..1000;1,100..1000&display=swap');
 :root {
-    --primary-color: #2563eb;           /* Vibrant blue */
-    --complimentary-color: #38bdf8;     /* Sky blue */
+    --primary-color: #309898    ;           /* Vibrant blue */
+    --complimentary-color: #FF9F00;     /* Sky blue */
     --accent-color: #f1f5f9;            /* Soft light gray */
     --text-color: #0f172a;              /* Deep navy */
 
@@ -150,8 +150,9 @@ body {
     background: var(--accent-color);
 }
 #unit-toggle-button {
-    background: var(--complimentary-color);
-    color: var(--accent-color);
+        background: var(--primary-color);
+
+    color: var(--text-color);
     border: none;
     padding: 12px 20px;
     font-size: 1rem;
@@ -165,7 +166,8 @@ body {
 }
 
 #unit-toggle-button:hover {
-    background: var(--primary-color);
+        background: var(--complimentary-color);
+
     filter: brightness(0.95);
 }
 
@@ -191,9 +193,9 @@ body {
 #credits {
     font-family: var(--paragraph-font);
     font-size: 1rem;
-    color: var(--primary-color);
+    color: var(--text-color);
     text-decoration: none;
-    background: var(--complimentary-color);
+    background: #F4631E;
     border-radius: 16px;
     padding: 6px 14px;
     transition: background 0.2s, color 0.2s;
