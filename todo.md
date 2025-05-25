@@ -2,8 +2,8 @@
 - This project is about a weather app.
 - The app allow the user to choose on a map a place that he likes, and then a side bar will pop up with information about the place.
 
-# Odin requirements:
-
+# Index
+https://www.visualcrossing.com/weather-query-builder/#
 
 # Todo
 1. Add api functionality:

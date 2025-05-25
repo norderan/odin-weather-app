@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ancizar+Sans:ital,wght@0,100..1000;1,100..1000&display=swap');
+:root {
+    --primary-color: #D5451B;
+    --complimentary-color: #FF9B45;
+    --accent-color: #F4E7E1;
+    --text-color: #521C0D;
+
+    --header-font: 'Ancizar Sans', sans-serif;
+    --paragraph-font: 'Roboto Mono', monospace;
+
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--header-font);
+    margin: 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+p, span, li, a, input, button, label, textarea, select {
+    font-family: var(--paragraph-font);
+}
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+}
+
+#weather-info-sidebar {
+    border-radius: 30px;
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    position: fixed;
+    height: calc(100vh - 80px);
+    max-width: 300px;
+    padding: 20px;
+    margin: 20px;
+}
+
+#temp {
+    font-size: 8rem;
+    font-weight: 700;
+}
+
+#forecast-container {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--complimentary-color);
+    border-radius: 15px;
+    padding: 10px;
+    color: var(--text-color);
+    gap: 10px;
+}
+
+.forecast-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9rem;
+    font-family: var(--paragraph-font);
+    width: 100%;
+}
+
+.forecast-day img {
+    width: 40px;
+    height: 40px;
+    margin: 4px 0;
+}
+
+.forecast-day span {
+    font-weight: bold;
+    margin-top: 2px;
+}
