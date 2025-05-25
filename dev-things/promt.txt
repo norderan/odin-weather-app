@@ -1,3 +1,0 @@
-create a side div that displays the weather information. 
-the other days should be stacked horizontal and stacked on each other at the buttom. build it 
-on the basis on what I have done here. use the root varibles. give be both css and html 

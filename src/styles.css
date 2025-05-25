@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ancizar+Sans:ital,wght@0,100..1000;1,100..1000&display=swap');
 :root {
-    --primary-color: #D5451B;
-    --complimentary-color: #FF9B45;
-    --accent-color: #F4E7E1;
-    --text-color: #521C0D;
+    --primary-color: #2563eb;           /* Vibrant blue */
+    --complimentary-color: #38bdf8;     /* Sky blue */
+    --accent-color: #f1f5f9;            /* Soft light gray */
+    --text-color: #0f172a;              /* Deep navy */
 
     --header-font: 'Ancizar Sans', sans-serif;
     --paragraph-font: 'Roboto Mono', monospace;
 
 
 }
+
+
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--header-font);
@@ -41,8 +43,10 @@ body {
     position: fixed;
     height: calc(100vh - 80px);
     max-width: 300px;
+    width: 300px;
     padding: 20px;
     margin: 20px;
+    z-index: 1000;
 }
 
 #temp {
@@ -164,4 +168,17 @@ body {
 #unit-toggle-button:active {
     transform: scale(0.96);
     filter: brightness(0.90);
+}
+
+
+#plus {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: var(--primary-color);
+    z-index: 2000;
+    pointer-events: none;
+    user-select: none;
 }

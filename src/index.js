@@ -1,11 +1,17 @@
 import "./styles.css";
 import { fetchWeatherData } from "./weatherService";
-
-
+import { setMapCoordinates , map} from "./mapService";
 async function displayWeather(city, unit) {
     try {
+        console.log("Fetching weather data for:", city, "with unit:", unit);
         const weatherData = await fetchWeatherData(city, unit);
 
+        if (typeof city !== 'object') {
+            setMapCoordinatesWithIgnore(weatherData.coordinates);
+        }
+        
+
+        
         // Remove previous weather info if exists
         const oldSidebar = document.getElementById("weather-info-sidebar");
         if (oldSidebar) oldSidebar.remove();
@@ -49,9 +55,9 @@ async function displayWeather(city, unit) {
         const dateTime = `${formatDate(day0.date)} | ${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`;
         sidebar.innerHTML = `
             <h3>${dateTime}</h3>
-            <h1>${weatherData.cityName || city}</h1>
+            <h1>${weatherData.displayName}</h1>
             <h1 id="temp">${Math.round(day0.temp)}°${unit}</h1>
-            <p>${day0.description || ""}</p>
+            <p>${day0.description}</p>
             <p><span class="material-icons" style="vertical-align:middle;">water_drop</span> <strong>Humidity:</strong> ${Math.round(day0.humidity)}%</p>
             <p><span class="material-icons" style="vertical-align:middle;">air</span> <strong>Wind:</strong> ${Math.round(day0.windSpeed)} km/h</p>
             <p><span class="material-icons" style="vertical-align:middle;">wb_sunny</span> <strong>UV Index:</strong> ${day0.uviindex ?? "-"}</p>
@@ -86,15 +92,23 @@ async function displayWeather(city, unit) {
     }
 }
 
-displayWeather("beersheva", "c"); // Replace with any city you want to test
+displayWeather("London", "c"); // Replace with any city you want to test
+
 let unit = "c";
 
+// Toggle unit between Celsius and Fahrenheit
 const unitToggleButton = document.getElementById("unit-toggle-button");
 unitToggleButton.addEventListener("click", () => {
     unit = unit === "c" ? "f" : "c";
-    const city = searchInput.value.trim() || "beersheva";
+    const center = map.getCenter();
+        const city = {
+        lat: center.lat.toFixed(4),
+        lon: center.lng.toFixed(4)
+    };
     displayWeather(city, unit);
 });
+
+// Search functionality
 const searchInput = document.getElementById("search-city-input");
 const searchButton = document.getElementById("search-city-button");
 
@@ -102,6 +116,7 @@ searchButton.addEventListener("click", () => {
     const city = searchInput.value.trim();
     if (city) {
         displayWeather(city, unit);
+        searchInput.value = ""; // Clear search after
     }
 });
 
@@ -110,8 +125,31 @@ searchInput.addEventListener("keydown", (e) => {
         const city = searchInput.value.trim();
         if (city) {
             displayWeather(city, unit);
+            searchInput.value = ""; // Clear search after
         }
     }
 });
 
 
+// map service:
+
+let ignoreNextMove = false;
+
+function setMapCoordinatesWithIgnore(coords) {
+    ignoreNextMove = true;
+    setMapCoordinates(coords);
+}
+
+map.on('moveend', () => {
+    if (ignoreNextMove) {
+        ignoreNextMove = false;
+        return;
+    }
+    const center = map.getCenter();
+    console.log('Map center:', center.lat, center.lng);
+    const city = {
+        lat: center.lat.toFixed(4),
+        lon: center.lng.toFixed(4)
+    };
+    displayWeather(city, unit);
+});
