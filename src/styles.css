@@ -37,6 +37,7 @@ body {
 }
 
 #weather-info-sidebar {
+
     border-radius: 30px;
     background-color: var(--primary-color);
     color: var(--accent-color);
@@ -47,6 +48,8 @@ body {
     padding: 20px;
     margin: 20px;
     z-index: 1000;
+    cursor: default;
+    
 }
 
 #temp {
@@ -95,6 +98,7 @@ body {
     right: 20px;
     display: flex;
     align-items: center;
+    
     gap: 16px;
     z-index: 1000;
 }
@@ -146,7 +150,7 @@ body {
     background: var(--accent-color);
 }
 #unit-toggle-button {
-    background: var(--primary-color);
+    background: var(--complimentary-color);
     color: var(--accent-color);
     border: none;
     padding: 12px 20px;
@@ -176,9 +180,59 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2rem;
-    color: var(--primary-color);
+    font-size: 4rem;
+    color: var(--text-color);
     z-index: 2000;
     pointer-events: none;
     user-select: none;
+    font-weight: 100;
 }
+
+#credits {
+    font-family: var(--paragraph-font);
+    font-size: 1rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    background: var(--complimentary-color);
+    border-radius: 16px;
+    padding: 6px 14px;
+    transition: background 0.2s, color 0.2s;
+    outline: none;
+}
+
+#credits:hover,
+#credits:focus-visible {
+    background: #d417ce;
+    color: var(--text-color);
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* HTML: <div class="loader"></div> */
+
+#loader-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+.loader {
+  width: 50px;
+  padding: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #000000;
+  --_m: 
+    conic-gradient(#0000 10%,#000),
+    linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+          mask: var(--_m);
+  -webkit-mask-composite: source-out;
+          mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {to{transform: rotate(1turn)}}

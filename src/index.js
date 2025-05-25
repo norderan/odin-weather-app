@@ -4,8 +4,9 @@ import { setMapCoordinates , map} from "./mapService";
 async function displayWeather(city, unit) {
     try {
         console.log("Fetching weather data for:", city, "with unit:", unit);
+        showLoading();
         const weatherData = await fetchWeatherData(city, unit);
-
+        removeLoader();
         if (typeof city !== 'object') {
             setMapCoordinatesWithIgnore(weatherData.coordinates);
         }
@@ -55,7 +56,7 @@ async function displayWeather(city, unit) {
         const dateTime = `${formatDate(day0.date)} | ${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`;
         sidebar.innerHTML = `
             <h3>${dateTime}</h3>
-            <h1>${weatherData.displayName}</h1>
+            <h1 id="dispalyName">${weatherData.displayName}</h1>
             <h1 id="temp">${Math.round(day0.temp)}°${unit}</h1>
             <p>${day0.description}</p>
             <p><span class="material-icons" style="vertical-align:middle;">water_drop</span> <strong>Humidity:</strong> ${Math.round(day0.humidity)}%</p>
@@ -111,6 +112,25 @@ unitToggleButton.addEventListener("click", () => {
 // Search functionality
 const searchInput = document.getElementById("search-city-input");
 const searchButton = document.getElementById("search-city-button");
+
+function showLoading() {
+    let loaderContainer = document.getElementById("loader-container");
+    if (!loaderContainer) {
+        loaderContainer = document.createElement("div");
+        loaderContainer.id = "loader-container";
+        document.body.appendChild(loaderContainer);
+    }
+    // Remove any existing loader inside the container
+    loaderContainer.innerHTML = "";
+    const loader = document.createElement("div");
+    loader.className = "loader";
+    loaderContainer.appendChild(loader);
+}
+
+function removeLoader() {
+    const loaderContainer = document.getElementById("loader-container");
+    if (loaderContainer) loaderContainer.remove();
+}
 
 searchButton.addEventListener("click", () => {
     const city = searchInput.value.trim();
