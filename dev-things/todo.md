@@ -6,10 +6,10 @@
 https://www.visualcrossing.com/weather-query-builder/#
 
 # Todo
-1. Add api functionality:
-    - user gives city / location and api returns as follows:
+1. Add api functionality: -- DONE
+    - user gives city / location and api returns as follows: 
         - temp at location
         -  sunset / sunrise
         - etc
-2. Add basic html and search city form.
-3. Add map
+2. Add basic html and search city form. -- DONE
+3. Add map -- DONE
