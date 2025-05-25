@@ -150,8 +150,7 @@ body {
     font-family: var(--paragraph-font);
     cursor: pointer;
     border-radius: 20px;
-    height: 48px; /* Match search bar height */
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.05s;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -160,4 +159,9 @@ body {
 #unit-toggle-button:hover {
     background: var(--primary-color);
     filter: brightness(0.95);
+}
+
+#unit-toggle-button:active {
+    transform: scale(0.96);
+    filter: brightness(0.90);
 }
