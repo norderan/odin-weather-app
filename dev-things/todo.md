@@ -13,3 +13,4 @@ https://www.visualcrossing.com/weather-query-builder/#
         - etc
 2. Add basic html and search city form. -- DONE
 3. Add map -- DONE
+4. Add Dark Mode

@@ -1,6 +1,6 @@
 import "./styles.css";
 import { fetchWeatherData } from "./weatherService";
-import { setMapCoordinates , map} from "./mapService";
+import { setMapCoordinates , map , switchTileLayer} from "./mapService";
 async function displayWeather(city, unit) {
     try {
         console.log("Fetching weather data for:", city, "with unit:", unit);
@@ -89,7 +89,7 @@ async function displayWeather(city, unit) {
         document.body.appendChild(sidebar);
 
     } catch (error) {
-        console.error("Failed to fetch weather data:", error);
+        console.error("[-] Failed to fetch weather data:", error);
     }
 }
 
@@ -174,12 +174,26 @@ map.on('moveend', () => {
         lastCenter = center;
         return;
     }
-    if (distance < 0.3) return;
+    if (distance < 0.1) return;
     lastCenter = center;
-    console.log('Map center:', center.lat, center.lng);
+    console.log('[+] Map moved:', center.lat, center.lng);
     const city = {
         lat: center.lat.toFixed(4),
         lon: center.lng.toFixed(4)
     };
     displayWeather(city, unit);
 });
+
+
+// Dark Mode Toggle
+
+function toggleDarkMode() {
+    document.documentElement.classList.toggle("dark-mode");
+}
+
+const darkModeToggle = document.getElementById("toggle");
+darkModeToggle.addEventListener("change", () => {
+    toggleDarkMode();
+    switchTileLayer();
+});
+

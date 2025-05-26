@@ -12,9 +12,8 @@ async function fetchWeatherData(city, unit = 'c') {
 
         const displayNameResponse = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${weatherData.latitude}&lon=${weatherData.longitude}&format=json`)
         const displayNameData = await displayNameResponse.json();
-        console.log("Display Name Data:", displayNameData);
         const displayName = displayNameData.address?.city || displayNameData.address?.town || displayNameData.address?.village || displayNameData.address?.state || displayNameData.address?.country || "Unknown Location";
-        console.log("Display Name:", displayName);
+        console.log("[+] New location:", displayName);
         return {
             displayName: displayName,
             coordinates: {
@@ -62,7 +61,7 @@ async function fetchWeatherData(city, unit = 'c') {
             }
         };
     } catch (error) {
-        console.error("Error fetching weather data:", error);
+        console.error("[-] Error fetching weather data:", error);
         throw error;
     }
 }
