@@ -160,12 +160,22 @@ function setMapCoordinatesWithIgnore(coords) {
     setMapCoordinates(coords);
 }
 
+let lastCenter = map.getCenter();
+
 map.on('moveend', () => {
+    const center = map.getCenter();
+    const distance = Math.sqrt(
+        Math.pow(center.lat - lastCenter.lat, 2) +
+        Math.pow(center.lng - lastCenter.lng, 2)
+    );
+    // Only trigger if moved more than ~0.01 degrees (~1km, adjust as needed)
     if (ignoreNextMove) {
         ignoreNextMove = false;
+        lastCenter = center;
         return;
     }
-    const center = map.getCenter();
+    if (distance < 0.3) return;
+    lastCenter = center;
     console.log('Map center:', center.lat, center.lng);
     const city = {
         lat: center.lat.toFixed(4),
