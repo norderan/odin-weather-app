@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ancizar+Sans:ital,wght@0,100..1000;1,100..1000&display=swap');
 :root {
-    --primary-color: #309898    ;           /* Vibrant blue */
-    --complimentary-color: #FF9F00;     /* Sky blue */
+    --primary-color: #309898;           /* Vibrant blue */
+    --complimentary-color: #F4631E;     /* Sky blue */
     --accent-color: #f1f5f9;            /* Soft light gray */
-    --text-color: #0f172a;              /* Deep navy */
+    --text-color: #f8fafc;              /* Light text for readability */
 
     --header-font: 'Ancizar Sans', sans-serif;
     --paragraph-font: 'Roboto Mono', monospace;
@@ -12,15 +12,13 @@
 
 :root.dark-mode {
     --primary-color: #1e293b;           /* Softer teal for dark background */
-    --complimentary-color: #FFA500;     /* Warm amber for contrast */
+    --complimentary-color: #F4631E;     /* Warm amber for contrast */
     --accent-color: #1aa7a7;            /* Darker gray-blue for backgrounds */
     --text-color: #f8fafc;              /* Light text for readability */
 
     --header-font: 'Ancizar Sans', sans-serif;
     --paragraph-font: 'Roboto Mono', monospace;
 }
-
-
 
 
 
@@ -135,7 +133,7 @@ body {
     border-radius: 20px;
     outline: none;
     background-color: var(--accent-color);
-    color: var(--text-color);
+    color: var(--primary-color);
     width: 180px;
     transition: box-shadow 0.2s;
 }
@@ -240,7 +238,7 @@ body {
   padding: 8px;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: #000000;
+  background: var(--text-color);
   --_m: 
     conic-gradient(#0000 10%,#000),
     linear-gradient(#000 0 0) content-box;

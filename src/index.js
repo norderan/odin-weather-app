@@ -197,3 +197,21 @@ darkModeToggle.addEventListener("change", () => {
     switchTileLayer();
 });
 
+
+function applySystemThemePreference() {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (prefersDark) {
+        document.documentElement.classList.add("dark-mode");
+        document.getElementById("toggle").checked = true;
+    } else {
+        document.documentElement.classList.remove("dark-mode");
+        document.getElementById("toggle").checked = false;
+    }
+    switchTileLayer();
+}
+
+// Listen for changes in system theme preference
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applySystemThemePreference);
+
+// Apply on load
+applySystemThemePreference();

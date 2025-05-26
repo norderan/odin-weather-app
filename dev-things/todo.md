@@ -13,4 +13,9 @@ https://www.visualcrossing.com/weather-query-builder/#
         - etc
 2. Add basic html and search city form. -- DONE
 3. Add map -- DONE
-4. Add Dark Mode
+4. Add Dark Mode -- Dome
+5. Fix bugs:
+    - toogle dark mode bug
+    - Handle failed api request 
+    - redesign side panel (bigger font)
+6. Add logo
