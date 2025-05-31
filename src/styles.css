@@ -61,7 +61,8 @@ body {
     margin: 20px;
     z-index: 1000;
     cursor: default;
-    
+    box-shadow: 0 2px 16px var(--primary-color);
+
 }
 
 #temp {
@@ -120,6 +121,7 @@ body {
     
     gap: 16px;
     z-index: 1000;
+    
 }
 
 #search-city-bar {
@@ -131,6 +133,8 @@ body {
     padding: 12px 20px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     gap: 10px;
+        box-shadow: 0 2px 16px var(--primary-color);
+
 }
 
 #search-city-input {
@@ -182,6 +186,8 @@ body {
     box-sizing: border-box;
     display: flex;
     align-items: center;
+        box-shadow: 0 2px 16px var(--primary-color);
+
 }
 
 #unit-toggle-button:hover {
@@ -202,11 +208,12 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 4rem;
-    color: var(--text-color);
+    color: var(--complimentary-color);
     z-index: 2000;
     pointer-events: none;
     user-select: none;
     font-weight: 100;
+
 }
 
 #credits {
@@ -219,6 +226,8 @@ body {
     padding: 6px 14px;
     transition: background 0.2s, color 0.2s;
     outline: none;
+        box-shadow: 0 2px 16px #d417ce  ;
+
 }
 
 #credits:hover,
@@ -316,4 +325,33 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+#logo-container {
+    position: fixed;
+    top: 25px;
+    left: 390px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    z-index: 1100;
+    background: var(--primary-color);
+    border-radius: 24px;
+    padding: 12px 24px;
+    box-shadow: 0 2px 16px var(--primary-color);
+}
+
+#logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 6px var(--primary-color));
+}
+
+#app-title {
+    font-family: var(--header-font);
+    font-size: 2rem;
+    color: var(--text-color);
+    letter-spacing: 1px;
+    margin: 0;
+    font-weight: 800;
 }
