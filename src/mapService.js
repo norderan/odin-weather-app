@@ -28,13 +28,13 @@ function switchTileLayer() {
     }).addTo(map);
   } else {
     // Switch to dark
-    currentTileLayer = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.{ext}', {
+    currentTileLayer = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.{ext}?api_key=5a75efd9-337a-4f8a-960f-814a5351722e', {
       minZoom: 0,
       maxZoom: 20,
       attribution: '&copy; Stamen Design',
       ext: 'png'
     }).addTo(map);
-    }
+  }
   }
 
 

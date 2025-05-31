@@ -18,4 +18,4 @@ https://www.visualcrossing.com/weather-query-builder/#
     - toogle dark mode bug -  V
     - Handle failed api request - v
     - redesign side panel (bigger font) - v
-6. Add logo
+6. Add logo -v 

@@ -325,6 +325,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+        cursor: default;
 }
 #logo-container {
     position: fixed;
@@ -338,6 +339,7 @@ body {
     border-radius: 24px;
     padding: 12px 24px;
     box-shadow: 0 2px 16px var(--primary-color);
+    cursor: default;
 }
 
 #logo {
