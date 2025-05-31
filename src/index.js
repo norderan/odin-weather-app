@@ -62,14 +62,16 @@ async function displayWeather(city, unit) {
         sidebar.innerHTML = `
             <h3>${dateTime}</h3>
             <h1 id="dispalyName">${weatherData.displayName}</h1>
-            <h1 id="temp">${Math.round(day0.temp)}°${unit}</h1>
+            <div id="temp-and-icon"> 
+                <h1 id="temp">${Math.round(day0.temp)}°${unit}</h1>
+                <img src="${getIconUrl(day0.icon)}" alt="Weather icon" width="60" />
+            </div>
             <p>${day0.description}</p>
             <p><span class="material-icons" style="vertical-align:middle;">water_drop</span> <strong>Humidity:</strong> ${Math.round(day0.humidity)}%</p>
             <p><span class="material-icons" style="vertical-align:middle;">air</span> <strong>Wind:</strong> ${Math.round(day0.windSpeed)} km/h</p>
             <p><span class="material-icons" style="vertical-align:middle;">wb_sunny</span> <strong>UV Index:</strong> ${day0.uviindex ?? "-"}</p>
             <p><span class="material-icons" style="vertical-align:middle;">wb_twilight</span> <strong>Sunrise:</strong> ${formatTime(day0.sunrise)}</p>
             <p><span class="material-icons" style="vertical-align:middle;">nights_stay</span> <strong>Sunset:</strong> ${formatTime(day0.sunset)}</p>
-            <img src="${getIconUrl(day0.icon)}" alt="Weather icon" width="60" />
         `;
 
         // Forecast container

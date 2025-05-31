@@ -35,7 +35,8 @@ h1 {
 
 p, span, li, a, input, button, label, textarea, select {
     font-family: var(--paragraph-font);
-        color: var(--text-color)
+    color: var(--text-color);
+    font-size: 1.2rem;
 
 }
 body, html {
@@ -64,10 +65,17 @@ body {
 }
 
 #temp {
-    font-size: 8rem;
+    font-size: 5rem;
     font-weight: 700;
 }
 
+#temp-and-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 20px;
+}
 #forecast-container {
     position: absolute;
     bottom: 20px;

@@ -15,7 +15,7 @@ https://www.visualcrossing.com/weather-query-builder/#
 3. Add map -- DONE
 4. Add Dark Mode -- Dome
 5. Fix bugs:
-    - toogle dark mode bug
-    - Handle failed api request 
-    - redesign side panel (bigger font)
+    - toogle dark mode bug -  V
+    - Handle failed api request - v
+    - redesign side panel (bigger font) - v
 6. Add logo
