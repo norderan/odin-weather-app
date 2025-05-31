@@ -7,7 +7,7 @@ async function displayWeather(city, unit) {
         showLoading();
         const weatherData = await fetchWeatherData(city, unit);
         removeLoader();
-        if (typeof city !== 'object') {
+        if (typeof city !== 'object') { 
             setMapCoordinatesWithIgnore(weatherData.coordinates);
         }
         
@@ -203,15 +203,16 @@ function applySystemThemePreference() {
     if (prefersDark) {
         document.documentElement.classList.add("dark-mode");
         document.getElementById("toggle").checked = true;
+            switchTileLayer();
+
     } else {
         document.documentElement.classList.remove("dark-mode");
         document.getElementById("toggle").checked = false;
     }
-    switchTileLayer();
 }
 
 // Listen for changes in system theme preference
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", applySystemThemePreference);
 
 // Apply on load
-applySystemThemePreference();
+applySystemThemePreference();   

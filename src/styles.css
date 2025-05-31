@@ -267,7 +267,7 @@ body {
     border: none;
     box-shadow: 
         inset calc(var(--size) * 0.33) calc(var(--size) * -0.25) 0 0 currentColor;
-    color: hsl(240, 100%, 95%);
+    color: #131a55;
     transition: all 500ms;
     position: relative;
     display: inline-block;
