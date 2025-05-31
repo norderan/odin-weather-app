@@ -7,6 +7,11 @@ async function displayWeather(city, unit) {
         showLoading();
         const weatherData = await fetchWeatherData(city, unit);
         removeLoader();
+
+        if (weatherData instanceof Error) {
+            showSearchError(city); 
+            return;
+        }
         if (typeof city !== 'object') { 
             setMapCoordinatesWithIgnore(weatherData.coordinates);
         }
@@ -132,6 +137,24 @@ function removeLoader() {
     if (loaderContainer) loaderContainer.remove();
 }
 
+
+// Ensure #city-not-found is hidden by default
+const errorElemInit = document.getElementById("city-not-found");
+if (errorElemInit) {
+    errorElemInit.style.display = "none";
+    errorElemInit.textContent = "";
+}
+
+function showSearchError(city) {
+    const errorElem = document.getElementById("city-not-found");
+    if (!errorElem) return;
+    errorElem.style.display = "block";
+    errorElem.textContent = `"${city}" was not found.`;
+    setTimeout(() => {
+        errorElem.style.display = "none";
+        errorElem.textContent = "";
+    }, 2000);
+}
 searchButton.addEventListener("click", () => {
     const city = searchInput.value.trim();
     if (city) {

@@ -62,7 +62,7 @@ async function fetchWeatherData(city, unit = 'c') {
         };
     } catch (error) {
         console.error("[-] Error fetching weather data:", error);
-        throw error;
+        return error;
     }
 }
 

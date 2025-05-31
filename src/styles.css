@@ -292,3 +292,20 @@ body {
         calc(var(--offset-diagonal) * -1) var(--offset-diagonal) 0 var(--ray-size) currentColor,
         var(--offset-diagonal) calc(var(--offset-diagonal) * -1) 0 var(--ray-size) currentColor;
 }
+
+
+#city-not-found {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--primary-color);
+    color: var(--text-color);
+    padding: 16px;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
