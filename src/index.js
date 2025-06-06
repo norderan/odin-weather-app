@@ -22,6 +22,14 @@ async function displayWeather(city, unit) {
         const oldSidebar = document.getElementById("weather-info-sidebar");
         if (oldSidebar) oldSidebar.remove();
 
+        const oldBottomSheetContent = document.querySelector(".bottom-sheet-body");
+        if( oldBottomSheetContent) {
+            oldBottomSheetContent.remove();
+            hideBottomSheet();
+        }
+        
+
+        
         // Helper to get weather icon URL
         function getIconUrl(icon) {
             const iconMap = {
@@ -52,14 +60,24 @@ async function displayWeather(city, unit) {
         }
 
         // Main sidebar
-        const sidebar = document.createElement("div");
-        sidebar.id = "weather-info-sidebar";
+
+
+        const weatherContent = document.createElement("div");
+        let parentElement;
+        if (isUserUsingPhone()) {
+            weatherContent.className = "bottom-sheet-body"; // Use bottom sheet for mobile
+            parentElement = document.querySelector(".content");
+            showBottomSheet();
+        } else {
+            weatherContent.id = "weather-info-sidebar";
+            parentElement = document.body; // Use sidebar for desktop
+        }
 
         // Current day (day0)
         const day0 = weatherData.day0;
         const now = new Date();
         const dateTime = `${formatDate(day0.date)} | ${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`;
-        sidebar.innerHTML = `
+        weatherContent.innerHTML = `
             <h3>${dateTime}</h3>
             <h1 id="dispalyName">${weatherData.displayName}</h1>
             <div id="temp-and-icon"> 
@@ -92,13 +110,24 @@ async function displayWeather(city, unit) {
             forecastContainer.appendChild(forecastDay);
         }
 
-        sidebar.appendChild(forecastContainer);
-        document.body.appendChild(sidebar);
-
+        weatherContent.appendChild(forecastContainer);
+        parentElement.appendChild(weatherContent);
+        
     } catch (error) {
         console.error("[-] Failed to fetch weather data:", error);
     }
 }
+
+function isUserUsingPhone() {
+  const width = window.innerWidth;
+ if (width <= 1024) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
 
 displayWeather("London", "c"); // Replace with any city you want to test
 
@@ -241,3 +270,55 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", app
 
 // Apply on load
 applySystemThemePreference();   
+
+
+
+
+const bottomSheet = document.querySelector(".bottom-sheet");
+const sheetContent = bottomSheet.querySelector(".content");
+const dragIcon = bottomSheet.querySelector(".drag-icon");
+// Global variables for tracking drag events
+let isDragging = false, startY, startHeight;
+// Show the bottom sheet, hide body vertical scrollbar, and call updateSheetHeight
+const showBottomSheet = () => {
+    bottomSheet.classList.add("show");
+    updateSheetHeight(25, "vh");
+}
+const updateSheetHeight = (height, unit) => {
+    sheetContent.style.height = `${height}${unit}`; //updates the height of the sheet content
+    // Toggles the fullscreen class to bottomSheet if the height is equal to 100
+    bottomSheet.classList.toggle("fullscreen", height === 100);
+}
+// Hide the bottom sheet and show body vertical scrollbar
+const hideBottomSheet = () => {
+    bottomSheet.classList.remove("show");
+}
+// Sets initial drag position, sheetContent height and add dragging class to the bottom sheet
+const dragStart = (e) => {
+    isDragging = true;
+    startY = e.pageY || e.touches?.[0].pageY;
+    startHeight = parseInt(sheetContent.style.height);
+    bottomSheet.classList.add("dragging");
+}
+// Calculates the new height for the sheet content and call the updateSheetHeight function
+const dragging = (e) => {
+    if(!isDragging) return;
+    const delta = startY - (e.pageY || e.touches?.[0].pageY);
+    const newHeight = startHeight + delta / window.innerHeight * 100;
+    updateSheetHeight(newHeight, "vh");
+}
+// Determines whether to hide, set to fullscreen, or set to default 
+// height based on the current height of the sheet content
+const dragStop = () => {
+    isDragging = false;
+    bottomSheet.classList.remove("dragging");
+    const sheetHeight = parseInt(sheetContent.style.height);
+    sheetHeight < 15 ? updateSheetHeight(5, "px") : sheetHeight > 35 ? updateSheetHeight(95, "vh") : updateSheetHeight(25, "vh");
+}
+dragIcon.addEventListener("mousedown", dragStart);
+document.addEventListener("mousemove", dragging);
+document.addEventListener("mouseup", dragStop);
+dragIcon.addEventListener("touchstart", dragStart);
+document.addEventListener("touchmove", dragging);
+document.addEventListener("touchend", dragStop);
+
